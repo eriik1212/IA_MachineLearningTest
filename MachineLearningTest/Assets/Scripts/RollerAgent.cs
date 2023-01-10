@@ -62,7 +62,16 @@ public class RollerAgent : Agent
         // Fell off platform
         else if (this.transform.localPosition.y < 0)
         {
+            SetReward(-1.0f);
             EndEpisode();
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "wall")
+        {
+            AddReward(-0.1f);
         }
     }
 
